@@ -2,6 +2,7 @@ import { apiCallFetchData, apiCallValidWord } from "./api.js";
 
 let loaderContainer = document.getElementById("loaderContainer");
 let inputContainer = document.querySelectorAll(".input-letter");
+let wishElement = document.getElementById("wishTag")
 
 let currentGuessWord = "";
 let currentRow = 0;
@@ -71,11 +72,17 @@ function startGame() {
             ].classList.add("invalid-word-class");
           }
         } else {
+          
+          let count = 0
+
           for (let i = 0; i < currentGuessWord.length; i++) {
             if (currentGuessWord[i] === correctWord[i]) {
               inputContainer[
                 currentRow * currentGuessWord.length + i
               ].classList.add("correct-word-class");
+
+              count++
+
             } else {
               inputContainer[
                 currentRow * currentGuessWord.length + i
@@ -83,7 +90,17 @@ function startGame() {
             }
           }
 
-          // alert("You win congratulation's")
+          if (count === 5) {
+
+            alert("You win congratulation's")
+
+            wishElement.textContent = "***** Congratulation's your win *****"
+
+            loadLoader = false
+
+            loaderToggler(loadLoader)
+
+          }
 
           currentGuessWord = "";
           currentRow++;
