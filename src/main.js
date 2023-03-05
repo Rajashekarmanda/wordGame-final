@@ -3,18 +3,18 @@ import { apiCallFetchData, apiCallValidWord } from "./api.js";
 let loaderContainer = document.getElementById("loaderContainer");
 let inputContainer = document.querySelectorAll(".input-letter");
 let wishElement = document.getElementById("wishTag")
+let onlineButtonElement = document.getElementById("onlineButton")
 
 let currentGuessWord = "";
 let currentRow = 0;
 let loadLoader = true;
 let answerWordsLength = 5;
-let totalAttempts = 6;
-let attemptsCount = 0;
-let correctWord;
-let validWordOrNot = false;
+let correctWord;;
 
 function startGame() {
+
   function addingLettersToFields(letter) {
+    
     loadLoader = false;
 
     loaderToggler(loadLoader);
@@ -76,6 +76,7 @@ function startGame() {
           let count = 0
 
           for (let i = 0; i < currentGuessWord.length; i++) {
+
             if (currentGuessWord[i] === correctWord[i]) {
               inputContainer[
                 currentRow * currentGuessWord.length + i
@@ -84,17 +85,22 @@ function startGame() {
               count++
 
             } else {
+
               inputContainer[
+
                 currentRow * currentGuessWord.length + i
+
               ].classList.add("close-word-class");
+
             }
+
           }
 
           if (count === 5) {
 
-            alert("You win congratulation's")
+            // alert("You win congratulation's")
 
-            wishElement.textContent = "***** Congratulation's your win *****"
+            wishElement.textContent = "** Congratulation's your win **"
 
             loadLoader = false
 
@@ -103,29 +109,57 @@ function startGame() {
           }
 
           currentGuessWord = "";
+
           currentRow++;
         }
+
       });
+
     });
+
   }
 
   document.addEventListener("keydown", function (event) {
+
     let keyPressed = event.key;
 
     if (keyPressed === "Enter") {
+
       loadLoader = true;
 
       loaderToggler(loadLoader);
 
       checkingAttempts();
+
     } else if (keyPressed === "Backspace") {
+
       eraseLastWord();
+
     } else if (validateEachLetter(keyPressed)) {
+
       addingLettersToFields(keyPressed.toUpperCase());
+
     } else {
       //
     }
+
   });
+
+}
+
+if (navigator.onLine) {
+
+  onlineButtonElement.textContent = "online"
+
+  onlineButtonElement.setAttribute("class","online-button")
+
+}else {
+
+  onlineButtonElement.textContent = "offline"
+
+  onlineButtonElement.setAttribute("class","offline-button")
 }
 
 startGame();
+
+

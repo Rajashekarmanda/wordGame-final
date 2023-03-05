@@ -8,15 +8,65 @@
   .line-style {
     border: 2px solid green;
     color: red;
+    animation: lineColor 0.25s infinite;
   }
 
+  @keyframes lineColor {
 
-  #wishTag {
+    0% {
+      color: red;
+      
+    }
+    20%{
+      color: yellow;
+    }
+
+    40% {
+      color: blue;
+      
+    }
+
+    60%{
+      color: violet;
+    }
+
+    80% {
+      color: springgreen;
+  
+    }
+    100% {
+      color: black;
+    }
+    
+  }
+
+  .wish-tag {
     color: blue;
-    font-size: 16px;
+    font-size: 20px;
     font-family: "Roboto";
     font-weight: 300;
     text-align: center;
+    animation: wishAnimation 0.5s infinite;
+  }
+
+  @keyframes wishAnimation {
+
+    5% {
+      color: red;
+    }
+    15%{
+      color: yellow;
+    }
+    35% {
+      color: pink;
+    }
+
+    70% {
+      color: black;
+    }
+    100% {
+      color: blue;
+    }
   }
 
 
@@ -99,4 +149,47 @@
   .loader-toggle-class{
     visibility: hidden;
   }
+
+  #onlineButton{
+
+    text-align: center;
+  }
+
+  @keyframes online-offline {
+
+    0% {
+      background-color: green;
+    }
+
+    50% {
+      background-color: lightgreen;
+    }
+
+    70% {
+      background-color: white;
+    }
+    100% {
+      background-color: green;
+    }
+    
+  }
   
+  .online-button {
+    background-color: green;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: "ROboto";
+    border-radius: 4px;
+    border: 0px;
+    animation: online-offline 10s infinite;
+  }
+  .offline-button {
+    background-color: red;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: "ROboto";
+    border-radius: 4px;
+    border: 0px;
+  }
